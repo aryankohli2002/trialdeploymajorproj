@@ -178,7 +178,7 @@ def newLoginDetails():
       return render_template('newLoginDetails.html', username=username)
 
 
-@app.route('/logout', methods=['POST'])
+@app.route('/logout', methods=['POST', 'GET'])
 def logout():
     session.clear()
     return redirect(url_for('show_login'))

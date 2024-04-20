@@ -47,10 +47,12 @@ def login():
         password = request.form['login_password']
         # If user exists, check login credentials
         if user_login(username, password):
-            session['phoneno'] = get_user_phoneno(username, password)
+            phoneno=get_user_phoneno(username, password)
+            print(phoneno)
+            session['phoneno'] = phoneno
             session['username'] = username
             session['password'] = password
-            return redirect(url_for('otp_verification'))
+            return redirect(url_for('show_otp_verification_page'))
             #return redirect(url_for('passwordstorage'))
         else:
             error = "Invalid password! Try again."
@@ -62,15 +64,21 @@ def login():
     return render_template('login.html', error=None)
 
 
+@app.route('/otp_verification')
+def show_otp_verification_page():
+   if 'username' not in session:
+        return redirect(url_for('login'))  # Redirect to login if username is not set
+   send_otp() 
+   return render_template('otp.html', error=None)
+
+
 @app.route('/otp_verification', methods=['GET', 'POST'])
 def otp_verification():
     error = None
     if 'username' not in session:
         return redirect(url_for('login'))  # Redirect to login if username is not set
-      
-    if request.method != 'POST':
-      send_otp() 
-    elif request.method == 'POST':
+    
+    if request.method == 'POST':
         otp = request.form.get('otp')
         if not otp:  # Check if OTP is empty
             error = 'Please enter OTP.'

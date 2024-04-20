@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Verification</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <img src="{{ url_for('static', filename='cysafe-logo.png') }}" alt="Cysafe" class="logo">
+    <h2>OTP Verification</h2>
+    
+    <form id="detailsForm" action="{{ url_for('resetLogin') }}" method="POST" >
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- Include CSRF token -->
+      <div style="padding-bottom: 20px;"><p>Don't add +91</p></div>
+      <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter Phone Number" value = "{{ phoneno }}" required>
+      <input type="email" name="emailAddress" id="emailAddress" placeholder="Enter Email Address" value = "{{ email }}" required>
+      <button type="submit" name="submitbtn" value="sendOTP">Send OTP</button>
+      <input type="text" name="otp" id="otp" placeholder="Enter OTP" >
+      <button type="submit" name="submitbtn" value="verifyOTP">Verify OTP</button>
+    </form>
+    
+
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+  </div>
+
+</body>
+</html>

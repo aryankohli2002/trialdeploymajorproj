@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reset Login Details</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <img src="{{ url_for('static', filename='cysafe-logo.png') }}" alt="Cysafe" class="logo">
+
+    <h2>Reset Login Details</h2>
+    <form id="loginForm" action="{{ url_for('newLoginDetails') }}" method="POST">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- Include CSRF token -->
+      <P style="padding-bottom: 20px;">Username: {{username}}</P>
+      <input type="text" placeholder="Enter new password" name="new_password"  required>
+      <button type="submit">Reset Password</button>
+    </form>
+
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+  </div>
+</body>
+</html>

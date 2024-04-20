@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/headers/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <style>
+        /* Additional styles */
+        .navbar-brand img {
+            width: 200px; /* Adjust the width as needed */
+            height: auto;
+        }
+        .nav-link {
+            color: black;
+        }
+        .nav-link:hover {
+            color: #007bff;
+        }
+        .active {
+            color: #007bff;
+        }
+        /* Custom style for the logout button */
+        .nav-pills .nav-item:nth-child(1) .nav-link {
+            color: rgb(0, 0, 0);
+            background-color: rgb(255, 0, 0);
+            border-color: red;
+        }
+        .nav-pills .nav-item:nth-child(1) .nav-link:hover {
+            background-color: darkred;
+            border-color: darkred;
+        }
+    </style>
+</head>
+<main>
+  <div class="container">
+    <header class="d-flex flex-wrap justify-content-between py-3 mb-4 border-bottom">
+      <a href="/" class="navbar-brand">
+        <img src="{{ url_for('static', filename='cysafe-logo.png')}}" width="200" class="d-inline-block align-text-top" alt="Cy Safe Logo">
+      </a>
+      
+      <ul class="nav nav-pills">
+        <!-- <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Logout</a></li> -->
+        <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+      </ul>
+    </header>
+  </div>
+</main>
+</html>

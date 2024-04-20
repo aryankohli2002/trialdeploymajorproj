@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Popup Form</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+    /* Custom CSS for centering the modal and making it larger */
+    .modal-dialog {
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        transform: translate(-50%, -50%);
+        width: 60%; /* Adjust the width as needed */
+        max-width: 800px; /* Maximum width for larger screens */
+    }
+
+    .modal-content {
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .modal-header {
+        background-color: #006c53;
+        color: rgb(255, 255, 255);
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
+    .modal-body {
+        background-color: #ffffff;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+
+    .modal-footer {
+        background-color: #ffffff;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        justify-content: center;
+    }
+
+
+
+
+</style>
+</head>
+<body>
+
+<!-- Modal -->
+<div class="modal fade" id="popupFormModal" tabindex="-1" aria-labelledby="popupFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="popupFormModalLabel">Popup Form</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="popupForm" method="post" action="/submit">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <div class="form-group">
+                        <input type="hidden" id="update_option" name="update_option" value="">
+                        <button type="button" id="mandatoryButton" class="btn btn-outline-primary" onclick="selectOption('Username')" required>Username</button>
+                        <button type="button" id="mandatoryButton2" class="btn btn-outline-info" onclick="selectOption('Password')" required>Password</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="text_info" style="display: inline-block;">
+                            <p style="display: inline;">First click</p>
+                            <p style="display: inline; font-size:50px;">&#9757;</p>
+                            <p style="display: inline;">then enter information:</p>
+                        </label>
+                        <div id="contentToEnable" style="display: none;">
+                            <input type="text" class="form-control" id="text_info" name="text_info" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="/passwordstorage" class="btn btn-outline-danger">Close</a>
+                <button type="submit" form="popupForm" class="btn btn-outline-success">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#popupFormModal').modal('show');
+    });
+    
+    function selectOption(option) {
+        document.getElementById('update_option').value = option;
+    }
+
+    function submitForm() {
+        document.getElementById('popupForm').submit();
+    }
+</script>
+<script>
+    // JavaScript to handle button click
+    document.getElementById("mandatoryButton").addEventListener("click", function() {
+      // Show the content to enable
+      document.getElementById("contentToEnable").style.display = "block";
+      // Disable the button after clicking
+      this.disabled = true;
+    });
+  </script>
+  <script>
+    // JavaScript to handle button click
+    document.getElementById("mandatoryButton2").addEventListener("click", function() {
+      // Show the content to enable
+      document.getElementById("contentToEnable").style.display = "block";
+      // Disable the button after clicking
+      this.disabled = true;
+    });
+  </script>
+</body>
+</html>

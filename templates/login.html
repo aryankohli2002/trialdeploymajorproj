@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <img src="{{ url_for('static', filename='cysafe-logo.png') }}" alt="Cysafe" class="logo">
+
+    <h2>Login</h2>
+    <form id="loginForm" action="{{ url_for('login') }}" method="POST">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- Include CSRF token -->
+      <input type="text" placeholder="Username" name="login_username"  required>
+      <input type="password" placeholder="Password" name="login_password"  required>
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+    <p>Forgot <a href="{{ url_for('resetLogin') }}">Login details?</a>
+    </p>
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+  </div>
+</body>
+</html>

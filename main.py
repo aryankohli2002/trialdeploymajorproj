@@ -181,7 +181,7 @@ def newLoginDetails():
 @app.route('/logout', methods=['POST'])
 def logout():
     session.clear()
-    return redirect(url_for('login'))
+    return redirect(url_for('show_login'))
 
 # @app.errorhandler(404)
 # def page_not_found(error):

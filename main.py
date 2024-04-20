@@ -50,8 +50,8 @@ def login():
             session['phoneno'] = get_user_phoneno(username, password)
             session['username'] = username
             session['password'] = password
-            #return redirect(url_for('otp_verification'))
-            return redirect(url_for('passwordstorage'))
+            return redirect(url_for('otp_verification'))
+            #return redirect(url_for('passwordstorage'))
         else:
             error = "Invalid password! Try again."
             return render_template('login.html', error=error)

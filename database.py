@@ -5,8 +5,8 @@ from flask import session
 from aess import generate_key, encrypt_AES, decrypt_AES
 import os
 
-# db_connection_string = "mysql+pymysql://aryan:1234@34.83.3.64/jovian?charset=utf8mb4"
-engine = create_engine("sqlite:///mydb.db")
+# db_connection_string = "sqlite:///mydb.db"
+engine = create_engine("mysql+pymysql://aryan:1234@34.83.3.64/jovian?charset=utf8mb4")
 Session = sessionmaker(bind=engine)
 sess = Session()
 Base = declarative_base()
